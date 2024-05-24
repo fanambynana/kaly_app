@@ -17,7 +17,7 @@ CREATE TABLE menu_price(
                            id SERIAL PRIMARY KEY,
                            amount DOUBLE PRECISION NOT NULL,
                            price_datetime TIMESTAMP NOT NULL,
-                            menu INT NOT NULL REFERENCES menu(id)
+                            menu_id INT NOT NULL REFERENCES menu(id)
 );
 CREATE TABLE menu_apply(
                            id SERIAL PRIMARY KEY,
@@ -27,8 +27,7 @@ CREATE TABLE menu_apply(
 CREATE TABLE ingredient(
                            id SERIAL PRIMARY KEY,
                            qty DOUBLE PRECISION NOT NULL,
-                           unity VARCHAR NOT NULL,
-                           unit_price DOUBLE PRECISION NOT NULL
+                           unity VARCHAR NOT NULL
 );
 CREATE TABLE ingredient_price(
                            id SERIAL PRIMARY KEY,

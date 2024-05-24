@@ -177,11 +177,11 @@ public class AutoCrudOperation<T> implements CrudOperation<T> {
     }
 
     @Override
-    public T findById(Integer id) {
+    public T findById(int id) {
         Class<?> clazz = getModel().getClass();
         String className = clazz.getSimpleName();
         List<T> list = new LinkedList<>(find(
-            List.of(new KeyAndValue("id" + className, id.toString()))
+            List.of(new KeyAndValue("id" + className, String.valueOf(id)))
         ));
         if (list.isEmpty()) {
             return null;

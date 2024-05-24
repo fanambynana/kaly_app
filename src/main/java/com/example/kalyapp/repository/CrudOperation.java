@@ -7,6 +7,6 @@ public interface CrudOperation<T> {
     boolean deleteById(int id);
     T update(T toUpdate);
     List<T> findAll();
-    T findById(Integer id);
+    T findById(int id);
     List<T> findCustom(List<KeyAndValue> keyAndValueList);
 }
