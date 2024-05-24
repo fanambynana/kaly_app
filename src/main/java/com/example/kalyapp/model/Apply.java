@@ -9,6 +9,5 @@ import lombok.NoArgsConstructor;
 @Data
 public class Apply {
     private int id;
-    private CORRESPOND correspond;
     private int priceId;
 }

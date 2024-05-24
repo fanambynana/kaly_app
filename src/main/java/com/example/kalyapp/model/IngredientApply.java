@@ -6,9 +6,13 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @EqualsAndHashCode(callSuper = true)
-@AllArgsConstructor
 @NoArgsConstructor
 @Data
 public class IngredientApply extends Apply {
     private int ingredientId;
+
+    public IngredientApply(int id, int priceId, int ingredientId) {
+        super(id, priceId);
+        this.ingredientId = ingredientId;
+    }
 }
