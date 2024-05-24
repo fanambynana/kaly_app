@@ -1,57 +1,59 @@
-CREATE DATABASE kaly_db;
-
 CREATE TABLE restaurant (
-                            re_id SERIAL PRIMARY KEY,
-                            re_location VARCHAR NOT NULL
+                            id SERIAL PRIMARY KEY,
+                            location VARCHAR NOT NULL
 );
 CREATE TABLE menu(
-                     me_id SERIAL PRIMARY KEY,
-                     me_name VARCHAR NOT NULL,
+                     id SERIAL PRIMARY KEY,
+                     name VARCHAR NOT NULL
 );
 CREATE TABLE sell(
-                     sl_id SERIAL PRIMARY KEY,
-                     re_id INT NOT NULL REFERENCES restaurant(re_id),
-                     me_id INT NOT NULL REFERENCES menu(me_id),
-                     sl_qty DOUBLE PRECISION NOT NULL,
-                     sl_datetime TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-CREATE TABLE menu_apply(
-                           me_ap_id SERIAL PRIMARY KEY,
-                           me_id INT NOT NULL REFERENCES menu(me_id),
-                           pr_id INT NOT NULL REFERENCES price(pr_id)
+                     id SERIAL PRIMARY KEY,
+                     qty DOUBLE PRECISION NOT NULL,
+                     datetime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                     resto_id INT NOT NULL REFERENCES restaurant(re_id),
+                     menu_id INT NOT NULL REFERENCES menu(me_id)
 );
 CREATE TABLE menu_price(
-                           me_pr_id SERIAL PRIMARY KEY,
-                           me_pr_amount DOUBLE PRECISION NOT NULL,
-                           me_pr_app_datetime TIMESTAMP NOT NULL
+                           id SERIAL PRIMARY KEY,
+                           amount DOUBLE PRECISION NOT NULL,
+                           price_datetime TIMESTAMP NOT NULL,
+                            menu INT NOT NULL REFERENCES menu(id)
+);
+CREATE TABLE menu_apply(
+                           id SERIAL PRIMARY KEY,
+                           id INT NOT NULL REFERENCES menu(me_pr_id),
+                           menu_price_id INT NOT NULL REFERENCES menu_price(id)
 );
 CREATE TABLE ingredient(
-                           in_id SERIAL PRIMARY KEY,
-                           in_qty DOUBLE PRECISION NOT NULL,
-                           in_unity VARCHAR NOT NULL,
-                           in_up DOUBLE PRECISION NOT NULL
+                           id SERIAL PRIMARY KEY,
+                           qty DOUBLE PRECISION NOT NULL,
+                           unity VARCHAR NOT NULL,
+                           unit_price DOUBLE PRECISION NOT NULL
 );
-CREATE TABLE ingr_price(
-                           in_pr_id SERIAL PRIMARY KEY,
-                           in_pr_amount DOUBLE PRECISION NOT NULL,
-                           in_pr_app_datetime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                           in_id INT NOT NULL REFERENCES ingredient(in_id)
+CREATE TABLE ingredient_price(
+                           id SERIAL PRIMARY KEY,
+                           amount DOUBLE PRECISION NOT NULL,
+                           price_datetime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                           ingredient_id INT NOT NULL REFERENCES ingredient(id)
 );
-CREATE TABLE ingr_apply(
-                           in_ap_id SERIAL PRIMARY KEY,
-                           in_id INT NOT NULL REFERENCES ingredient(in_id),
-                           in_pr_id INT NOT NULL REFERENCES ingr_price(in_pr_id)
+CREATE TABLE ingredient_apply(
+                           id SERIAL PRIMARY KEY,
+                           ingredient_id INT NOT NULL REFERENCES ingredient(id),
+                           ingredient_price_id INT NOT NULL REFERENCES ingredient_price(id)
 );
-CREATE TABLE stock(
-                      st_id SERIAL PRIMARY KEY,
-                      in_id INT NOT NULL REFERENCES ingredient(in_id),
-                      st_remaining_qty DOUBLE INT NOT NULL,
-                      st_update_datetime TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+CREATE TYPE MVT_TYPE AS ENUM('IN, OUT');
+CREATE TABLE stock_mvt(
+    id SERIAL PRIMARY KEY,
+    mvt_type MVT_TYPE NOT NULL,
+    mvt_qty DOUBLE PRECISION NOT NULL,
+    updated_qty DOUBLE PRECISION NOT NULL,
+    mvt_datetime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    resto_id INT NOT NULL REFERENCES restaurant(id),
+    ingredient_id INT NOT NULL REFERENCES ingredient(d)
 );
 CREATE TABLE compose(
-                        cm_id SERIAL PRIMARY KEY,
-                        in_id INT NOT NULL REFERENCES ingredient(in_id),
-                        me_id INT NOT NULL REFERENCES menu(me_id),
-                        cm_nec_qty DOUBLE PRECISION NOT NULL,
-                        cm_unity VARCHAR NOT NULL
+                        id SERIAL PRIMARY KEY,
+                        ingredient_id INT NOT NULL REFERENCES ingredient(id),
+                        menu_id INT NOT NULL REFERENCES menu(id),
+                        necessary_qty DOUBLE PRECISION NOT NULL
 );
