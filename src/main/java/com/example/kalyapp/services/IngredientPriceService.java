@@ -1,38 +1,49 @@
 package com.example.kalyapp.services;
 
-import com.example.kalyapp.dto.resquest.IngredientPriceDtoRequest;
+import com.example.kalyapp.model.IngredientPrice;
 import com.example.kalyapp.repository.AutoCrudOperation;
 import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class IngredientPriceService {
-    AutoCrudOperation<IngredientPriceDtoRequest> ingredientPriceAutoCrudOperation;
+    AutoCrudOperation<IngredientPrice> ingredientPriceAutoCrudOperation;
 
     public IngredientPriceService(Connection connection) {
-        this.ingredientPriceAutoCrudOperation = new AutoCrudOperation<>(new IngredientPriceDtoRequest(), connection);
+        this.ingredientPriceAutoCrudOperation = new AutoCrudOperation<>(new IngredientPrice(), connection);
     }
 
-    public List<IngredientPriceDtoRequest> findAll() {
+    public List<IngredientPrice> findAll() {
         return ingredientPriceAutoCrudOperation.findAll();
     }
-    public IngredientPriceDtoRequest findById(int id) {
+    public IngredientPrice findById(int id) {
         return ingredientPriceAutoCrudOperation.findById(id);
     }
-    public IngredientPriceDtoRequest save(IngredientPriceDtoRequest toSave) {
+    public IngredientPrice save(IngredientPrice toSave) {
         return ingredientPriceAutoCrudOperation.save(toSave);
     }
-    public IngredientPriceDtoRequest update(IngredientPriceDtoRequest toUpdate) {
+    public IngredientPrice update(IngredientPrice toUpdate) {
         return ingredientPriceAutoCrudOperation.update(toUpdate);
     }
     public Boolean deleteById(int id) {
         return ingredientPriceAutoCrudOperation.deleteById(id);
     }
 
-    public IngredientPriceDtoRequest currentIngredientPrice() {
-        return new LinkedList<>(ingredientPriceAutoCrudOperation.findAll()).getLast();
+    public IngredientPrice currentIngredientPrice() {
+        if (ingredientPriceAutoCrudOperation.findAll().isEmpty()) {
+            return new IngredientPrice(
+                    0,
+                    0,
+                    LocalDateTime.now(),
+                    0
+            );
+        } else {
+            return new LinkedList<>(ingredientPriceAutoCrudOperation.findAll()).getLast();
+        }
     }
 }

@@ -14,7 +14,7 @@ public class StockMvt {
     private int id;
     private MVT_TYPE mvtType;
     private double mvtQty;
-    private double remainingQty;
+    private double updatedQty;
     private LocalDateTime mvtDatetime;
     private int restoId;
     private int ingredientId;

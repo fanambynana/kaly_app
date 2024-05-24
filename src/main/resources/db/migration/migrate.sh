@@ -1,1 +1,1 @@
-find . -type f -name "*.sql" -exec "psql postgresql://${DB_USERNAME}:${DB_PASSWORD}@localhost:5432 -f {}" \;
+find ./ -type f -name "*.sql" -exec sh -C "psql postgresql://${DB_USERNAME}:${DB_PASSWORD}@localhost:5432/kaly_db -f {}" \;

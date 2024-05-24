@@ -1,7 +1,5 @@
 package com.example.kalyapp.repository;
 
-import com.example.kalyapp.dto.resquest.IngredientPriceDtoRequest;
-import com.example.kalyapp.dto.resquest.MenuPriceDtoRequest;
 import com.example.kalyapp.model.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,10 +10,10 @@ public class GenericModel {
     Compose compose = new Compose();
     Ingredient ingredient = new Ingredient();
     IngredientApply ingredientApply = new IngredientApply();
-    IngredientPriceDtoRequest ingredientPriceDtoRequest = new IngredientPriceDtoRequest();
+    IngredientPrice ingredientPrice = new IngredientPrice();
     Menu menu = new Menu();
     MenuApply menuApply = new MenuApply();
-    MenuPriceDtoRequest menuPriceDtoRequest = new MenuPriceDtoRequest();
+    MenuPrice menuPrice = new MenuPrice();
     Resto resto = new Resto();
     Sell sell = new Sell();
     StockMvt stockMvt = new StockMvt();

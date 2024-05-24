@@ -12,7 +12,7 @@ public class DbConnect {
     public Connection createConnection() {
         try {
             return DriverManager.getConnection(
-                    System.getenv("DB_URL"),
+                    System.getenv("DB_BASE_URL") + "/kaly_db",
                     System.getenv("DB_USERNAME"),
                     System.getenv("DB_PASSWORD")
             );

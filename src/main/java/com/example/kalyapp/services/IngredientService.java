@@ -1,8 +1,8 @@
 package com.example.kalyapp.services;
 
 import com.example.kalyapp.dto.response.IngredientDtoResponse;
-import com.example.kalyapp.dto.resquest.IngredientPriceDtoRequest;
 import com.example.kalyapp.model.Ingredient;
+import com.example.kalyapp.model.IngredientPrice;
 import com.example.kalyapp.repository.AutoCrudOperation;
 import org.springframework.stereotype.Service;
 
@@ -35,14 +35,20 @@ public class IngredientService implements RequestToResponse<Ingredient, Ingredie
         return ingredientPriceService.deleteById(id);
     }
 
+    // 21:19
+
     @Override
-    public IngredientDtoResponse requestToResponse(Ingredient ingredientDtoRequest) {
-        IngredientPriceDtoRequest currentIngredientPrice = ingredientPriceService.currentIngredientPrice();
+    public IngredientDtoResponse requestToResponse(Ingredient ingredient) {
+        if (ingredient == null) {
+            return null;
+        }
+
+        IngredientPrice currentIngredientPrice = ingredientPriceService.currentIngredientPrice();
         IngredientDtoResponse ingredientDtoResponse = new IngredientDtoResponse();
 
-        ingredientDtoResponse.setId(ingredientDtoRequest.getId());
-        ingredientDtoResponse.setName(ingredientDtoRequest.getName());
-        ingredientDtoResponse.setUnity(ingredientDtoRequest.getUnity());
+        ingredientDtoResponse.setId(ingredient.getId());
+        ingredientDtoResponse.setName(ingredient.getName());
+        ingredientDtoResponse.setUnity(ingredient.getUnity());
         ingredientDtoResponse.setPrice(currentIngredientPrice);
 
         return ingredientDtoResponse;

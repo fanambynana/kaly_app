@@ -10,29 +10,29 @@ CREATE TABLE sell(
                      id SERIAL PRIMARY KEY,
                      qty DOUBLE PRECISION NOT NULL,
                      datetime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                     resto_id INT NOT NULL REFERENCES restaurant(re_id),
-                     menu_id INT NOT NULL REFERENCES menu(me_id)
+                     resto_id INT NOT NULL REFERENCES restaurant(id),
+                     menu_id INT NOT NULL REFERENCES menu(id)
 );
 CREATE TABLE menu_price(
                            id SERIAL PRIMARY KEY,
                            amount DOUBLE PRECISION NOT NULL,
-                           price_datetime TIMESTAMP NOT NULL,
+                           change_datetime TIMESTAMP NOT NULL,
                             menu_id INT NOT NULL REFERENCES menu(id)
 );
 CREATE TABLE menu_apply(
                            id SERIAL PRIMARY KEY,
-                           id INT NOT NULL REFERENCES menu(me_pr_id),
+                           menu_id INT NOT NULL REFERENCES menu(id),
                            menu_price_id INT NOT NULL REFERENCES menu_price(id)
 );
 CREATE TABLE ingredient(
                            id SERIAL PRIMARY KEY,
-                           qty DOUBLE PRECISION NOT NULL,
+                            name VARCHAR NOT NULL,
                            unity VARCHAR NOT NULL
 );
 CREATE TABLE ingredient_price(
                            id SERIAL PRIMARY KEY,
                            amount DOUBLE PRECISION NOT NULL,
-                           price_datetime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                           change_datetime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                            ingredient_id INT NOT NULL REFERENCES ingredient(id)
 );
 CREATE TABLE ingredient_apply(
@@ -48,7 +48,7 @@ CREATE TABLE stock_mvt(
     updated_qty DOUBLE PRECISION NOT NULL,
     mvt_datetime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     resto_id INT NOT NULL REFERENCES restaurant(id),
-    ingredient_id INT NOT NULL REFERENCES ingredient(d)
+    ingredient_id INT NOT NULL REFERENCES ingredient(id)
 );
 CREATE TABLE compose(
                         id SERIAL PRIMARY KEY,

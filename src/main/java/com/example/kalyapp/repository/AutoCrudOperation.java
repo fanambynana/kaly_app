@@ -8,9 +8,7 @@ import java.sql.*;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 import static com.example.kalyapp.error.ErrorFormatter.formatError;
 import static com.example.kalyapp.repository.CaseConverter.convertToSnakeCase;
@@ -29,7 +27,20 @@ public class AutoCrudOperation<T> implements CrudOperation<T> {
         String className = clazz.getSimpleName();
         String classNameInSnakeCase = convertToSnakeCase(className);
 
-        Field[] fields = clazz.getDeclaredFields();
+        Field[] clazzFields = clazz.getDeclaredFields();
+        List<Field> fields;
+
+        Class<?> superClazz = clazz.getSuperclass();
+        if (superClazz != Object.class) {
+            List<Field> fieldList = new ArrayList<>();
+            fieldList.addAll(Arrays.stream(clazzFields).toList());
+            fieldList.addAll(Arrays.stream(superClazz.getDeclaredFields()).toList());
+
+            fields = fieldList;
+        } else {
+            fields = Arrays.stream(clazzFields).toList();
+        }
+
         StringBuilder columns = new StringBuilder();
         StringBuilder values = new StringBuilder();
         List<Field> fieldList = new ArrayList<>();
@@ -38,9 +49,6 @@ public class AutoCrudOperation<T> implements CrudOperation<T> {
         try {
             for (Field field : fields) {
                 field.setAccessible(true);
-                if (field.getName().toLowerCase().equals("id" + className)) {
-                    continue;
-                }
                 if (field.get(toSave) == null) {
                     continue;
                 }
@@ -60,11 +68,12 @@ public class AutoCrudOperation<T> implements CrudOperation<T> {
                     "INSERT INTO %s (" + columns + ") VALUES (" + values + ")",
                     classNameInSnakeCase
             );
+            System.out.println(insertQuery);
             preparedStatement = connection.prepareStatement(insertQuery);
             int parameterIndex = 1;
             for (Field field : fieldList) {
-                if (field.getType() == Instant.class) {
-                    preparedStatement.setTimestamp(parameterIndex++, Timestamp.from((Instant) field.get(toSave)));
+                if (field.getType() == LocalDateTime.class) {
+                    preparedStatement.setTimestamp(parameterIndex++, Timestamp.valueOf((LocalDateTime) field.get(toSave)));
                 } else {
                     preparedStatement.setObject(parameterIndex++, field.get(toSave));
                 }
@@ -74,7 +83,7 @@ public class AutoCrudOperation<T> implements CrudOperation<T> {
             }
         } catch (Exception exception) {
             System.err.println(
-                    formatError(exception, "while saving the %s", toSave)
+                    formatError(exception, "while saving the " + className, toSave)
             );
         } finally {
             closeSession(preparedStatement, null);
@@ -102,7 +111,9 @@ public class AutoCrudOperation<T> implements CrudOperation<T> {
             isDeleted = preparedStatement.executeUpdate() > 0;
         } catch (Exception exception) {
             System.err.println(
-                    formatError(exception, "deleting the %s with id %s", null)
+                    formatError(exception,
+                    String.format("deleting the %s with id %s", className, id),
+                null)
             );
         } finally {
             closeSession(preparedStatement, null);
@@ -179,9 +190,8 @@ public class AutoCrudOperation<T> implements CrudOperation<T> {
     @Override
     public T findById(int id) {
         Class<?> clazz = getModel().getClass();
-        String className = clazz.getSimpleName();
         List<T> list = new LinkedList<>(find(
-            List.of(new KeyAndValue("id" + className, String.valueOf(id)))
+            List.of(new KeyAndValue("id", String.valueOf(id)))
         ));
         if (list.isEmpty()) {
             return null;

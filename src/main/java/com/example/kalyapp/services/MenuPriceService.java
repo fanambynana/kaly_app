@@ -1,38 +1,55 @@
 package com.example.kalyapp.services;
 
-import com.example.kalyapp.dto.resquest.MenuPriceDtoRequest;
+import com.example.kalyapp.model.MenuPrice;
 import com.example.kalyapp.repository.AutoCrudOperation;
+import com.example.kalyapp.repository.KeyAndValue;
 import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MenuPriceService {
-    AutoCrudOperation<MenuPriceDtoRequest> menuPriceAutoCrudOperation;
+    AutoCrudOperation<MenuPrice> menuPriceAutoCrudOperation;
 
     public MenuPriceService(Connection connection) {
-        this.menuPriceAutoCrudOperation = new AutoCrudOperation<>(new MenuPriceDtoRequest(), connection);
+        this.menuPriceAutoCrudOperation = new AutoCrudOperation<>(new MenuPrice(), connection);
     }
 
-    public List<MenuPriceDtoRequest> findAll() {
+    public List<MenuPrice> findAll() {
         return menuPriceAutoCrudOperation.findAll();
     }
-    public MenuPriceDtoRequest findById(int id) {
+    public MenuPrice findById(int id) {
         return menuPriceAutoCrudOperation.findById(id);
     }
-    public MenuPriceDtoRequest save(MenuPriceDtoRequest toSave) {
+    public MenuPrice save(MenuPrice toSave) {
         return menuPriceAutoCrudOperation.save(toSave);
     }
-    public MenuPriceDtoRequest update(MenuPriceDtoRequest toUpdate) {
+    public MenuPrice update(MenuPrice toUpdate) {
         return menuPriceAutoCrudOperation.update(toUpdate);
     }
     public Boolean deleteById(int id) {
         return menuPriceAutoCrudOperation.deleteById(id);
     }
+    public List<MenuPrice> findCustom(List<KeyAndValue> keyAndValueList) {
+        return menuPriceAutoCrudOperation.findCustom(keyAndValueList);
+    }
 
-    public MenuPriceDtoRequest currentMenuPrice() {
-        return new LinkedList<>(menuPriceAutoCrudOperation.findAll()).getLast();
+    public MenuPrice currentMenuPrice() {
+        List<MenuPrice> menuPrices = new LinkedList<>(menuPriceAutoCrudOperation.findAll());
+
+        if (menuPrices.isEmpty()) {
+            return new MenuPrice(
+                    0,
+                    0,
+                    LocalDateTime.now(),
+                    0
+            );
+        } else  {
+            return menuPrices.getLast();
+        }
     }
 }

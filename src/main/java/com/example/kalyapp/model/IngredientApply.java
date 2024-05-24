@@ -1,18 +1,16 @@
 package com.example.kalyapp.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
 @NoArgsConstructor
 @Data
 public class IngredientApply extends Apply {
-    private int ingredientId;
+    private int ingredientPriceId;
 
-    public IngredientApply(int id, int priceId, int ingredientId) {
+    public IngredientApply(int id, int priceId, int ingredientPriceId) {
         super(id, priceId);
-        this.ingredientId = ingredientId;
+        this.ingredientPriceId = ingredientPriceId;
     }
 }
