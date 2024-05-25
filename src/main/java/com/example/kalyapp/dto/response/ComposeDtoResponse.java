@@ -10,8 +10,8 @@ import lombok.*;
 public class ComposeDtoResponse extends Compose {
     IngredientDtoResponse ingredient;
 
-    public ComposeDtoResponse(int id, double necessaryQty, IngredientDtoResponse ingredient) {
-        super(id, necessaryQty, 0,0);
+    public ComposeDtoResponse(Integer id, Double necessaryQty, IngredientDtoResponse ingredient) {
+        super(id, necessaryQty, null,null);
         this.ingredient = ingredient;
     }
 }

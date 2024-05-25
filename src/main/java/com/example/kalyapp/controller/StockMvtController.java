@@ -19,7 +19,7 @@ public class StockMvtController {
 
     @PutMapping("")
     public ResponseEntity<StockMvtDtoResponse> saveOrUpdate(@RequestBody StockMvtDtoRequest stockMvtDtoRequest) {
-        if (stockMvtDtoRequest.getId() == 0) {
+        if (stockMvtDtoRequest.getId() == null) {
             return ResponseEntity.of(
                     Optional.of(stockMvtService.save(stockMvtDtoRequest))
             );

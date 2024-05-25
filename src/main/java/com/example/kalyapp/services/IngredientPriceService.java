@@ -37,10 +37,10 @@ public class IngredientPriceService {
     public IngredientPrice currentIngredientPrice() {
         if (ingredientPriceAutoCrudOperation.findAll().isEmpty()) {
             return new IngredientPrice(
-                    0,
-                    0,
+                    null,
+                    null,
                     LocalDateTime.now(),
-                    0
+                    null
             );
         } else {
             return new LinkedList<>(ingredientPriceAutoCrudOperation.findAll()).getLast();

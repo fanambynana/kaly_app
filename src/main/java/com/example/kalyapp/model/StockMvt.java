@@ -11,11 +11,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Data
 public class StockMvt {
-    private int id;
+    private Integer id;
     private MVT_TYPE mvtType;
-    private double mvtQty;
-    private double updatedQty;
+    private Double mvtQty;
+    private Double updatedQty;
     private LocalDateTime mvtDatetime;
-    private int restoId;
-    private int ingredientId;
+    private Integer restoId;
+    private Integer ingredientId;
 }

@@ -18,7 +18,7 @@ public class MenuDtoResponse extends Menu {
     private List<ComposeDtoResponse> composes;
     private Price price;
 
-    public MenuDtoResponse(int id, String name, List<ComposeDtoResponse> composes, Price price) {
+    public MenuDtoResponse(Integer id, String name, List<ComposeDtoResponse> composes, Price price) {
         super(id, name);
         this.composes = composes;
         this.price = price;

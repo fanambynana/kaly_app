@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class Compose {
-    private int id;
-    private double necessaryQty;
-    private int menuId;
-    private int ingredientId;
+    private Integer id;
+    private Double necessaryQty;
+    private Integer menuId;
+    private Integer ingredientId;
 }

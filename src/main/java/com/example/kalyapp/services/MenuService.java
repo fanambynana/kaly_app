@@ -1,6 +1,5 @@
 package com.example.kalyapp.services;
 
-import com.example.kalyapp.dto.response.ComposeDtoResponse;
 import com.example.kalyapp.dto.response.MenuDtoResponse;
 import com.example.kalyapp.model.Menu;
 import com.example.kalyapp.repository.AutoCrudOperation;
@@ -27,7 +26,7 @@ public class MenuService implements RequestToResponse<Menu, MenuDtoResponse> {
     public List<MenuDtoResponse> findAll() {
         return menuAutoCrudOperation.findAll().stream().map(this::requestToResponse).toList();
     }
-    public MenuDtoResponse findById(int id) {
+    public MenuDtoResponse findById(Integer id) {
         return requestToResponse(menuAutoCrudOperation.findById(id));
     }
     public MenuDtoResponse save(Menu toSave) {
@@ -42,7 +41,7 @@ public class MenuService implements RequestToResponse<Menu, MenuDtoResponse> {
         }
         return requestToResponse(toUpdate);
     }
-    public Boolean deleteById(int id) {
+    public Boolean deleteById(Integer id) {
         return menuAutoCrudOperation.deleteById(id);
     }
 

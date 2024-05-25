@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class Ingredient {
-    private  int id;
+    private  Integer id;
     private String name;
     private String unity;
 }

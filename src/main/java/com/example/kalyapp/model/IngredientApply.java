@@ -7,9 +7,9 @@ import lombok.*;
 @NoArgsConstructor
 @Data
 public class IngredientApply extends Apply {
-    private int ingredientPriceId;
+    private Integer ingredientPriceId;
 
-    public IngredientApply(int id, int priceId, int ingredientPriceId) {
+    public IngredientApply(Integer id, Integer priceId, Integer ingredientPriceId) {
         super(id, priceId);
         this.ingredientPriceId = ingredientPriceId;
     }

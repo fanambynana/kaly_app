@@ -22,20 +22,18 @@ public class IngredientService implements RequestToResponse<Ingredient, Ingredie
     public List<IngredientDtoResponse> findAll() {
         return ingredientAutoCrudOperation.findAll().stream().map(this::requestToResponse).toList();
     }
-    public IngredientDtoResponse findById(int id) {
+    public IngredientDtoResponse findById(Integer id) {
         return requestToResponse(ingredientAutoCrudOperation.findById(id));
     }
     public IngredientDtoResponse save(Ingredient toSave) {
         return requestToResponse(ingredientAutoCrudOperation.save(toSave));
     }
     public IngredientDtoResponse update(Ingredient toUpdate) {
-        return requestToResponse(ingredientAutoCrudOperation.save(toUpdate));
+        return requestToResponse(ingredientAutoCrudOperation.update(toUpdate));
     }
-    public Boolean deleteById(int id) {
+    public Boolean deleteById(Integer id) {
         return ingredientPriceService.deleteById(id);
     }
-
-    // 21:19
 
     @Override
     public IngredientDtoResponse requestToResponse(Ingredient ingredient) {

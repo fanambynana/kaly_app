@@ -9,7 +9,7 @@ import lombok.*;
 public class MenuApply extends Apply{
     private String menuPriceId;
 
-    public MenuApply(int id, int priceId, String menuPriceId) {
+    public MenuApply(Integer id, Integer priceId, String menuPriceId) {
         super(id, priceId);
         this.menuPriceId = menuPriceId;
     }

@@ -18,7 +18,7 @@ public class MenuApplyService {
     public List<MenuApply> findAll() {
         return menuApplyAutoCrudOperation.findAll();
     }
-    public MenuApply findById(int id) {
+    public MenuApply findById(Integer id) {
         return menuApplyAutoCrudOperation.findById(id);
     }
     public MenuApply save(MenuApply toSave) {
@@ -27,7 +27,7 @@ public class MenuApplyService {
     public MenuApply update(MenuApply toUpdate) {
         return menuApplyAutoCrudOperation.save(toUpdate);
     }
-    public Boolean deleteById(int id) {
+    public Boolean deleteById(Integer id) {
         return menuApplyAutoCrudOperation.deleteById(id);
     }
 }

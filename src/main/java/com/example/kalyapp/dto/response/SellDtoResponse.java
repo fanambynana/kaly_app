@@ -14,7 +14,7 @@ public class SellDtoResponse extends Sell {
     private Resto resto;
     private MenuDtoResponse menu;
 
-    public SellDtoResponse(int id, double qty, LocalDateTime datetime, MenuDtoResponse menu, Resto resto) {
+    public SellDtoResponse(Integer id, Double qty, LocalDateTime datetime, MenuDtoResponse menu, Resto resto) {
         super(id, qty, datetime, 0, 0);
         this.menu = menu;
         this.resto = resto;

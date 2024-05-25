@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class Resto {
-    private int id;
+    private Integer id;
     private String location;
 }

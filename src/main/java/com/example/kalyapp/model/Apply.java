@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class Apply {
-    private int id;
-    private int priceId;
+    private Integer id;
+    private Integer priceId;
 }

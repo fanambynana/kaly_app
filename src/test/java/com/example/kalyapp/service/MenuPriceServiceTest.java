@@ -17,7 +17,7 @@ public class MenuPriceServiceTest {
 
     static MenuPrice menuPrice = new MenuPrice(
             1,
-            5_000,
+            5_000.0,
             LocalDateTime.now(),
             1
     );

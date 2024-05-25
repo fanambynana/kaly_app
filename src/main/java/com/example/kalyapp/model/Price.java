@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Data
 public class Price {
-    private int id;
-    private double amount;
+    private Integer id;
+    private Double amount;
     private LocalDateTime changeDatetime;
 }

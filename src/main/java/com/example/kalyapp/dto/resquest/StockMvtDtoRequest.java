@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Data
 public class StockMvtDtoRequest extends StockMvt {
-    public StockMvtDtoRequest(int id, MVT_TYPE mvtType, double mvtQty, LocalDateTime mvtDatetime, int restoId, int ingredientId) {
-        super(id, mvtType, mvtQty, 0, mvtDatetime, restoId, ingredientId);
+    public StockMvtDtoRequest(Integer id, MVT_TYPE mvtType, Double mvtQty, LocalDateTime mvtDatetime, Integer restoId, Integer ingredientId) {
+        super(id, mvtType, mvtQty, null, mvtDatetime, restoId, ingredientId);
     }
 }

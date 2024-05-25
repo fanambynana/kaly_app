@@ -11,9 +11,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Data
 public class Sell {
-    private int id;
-    private double qty;
+    private Integer id;
+    private Double qty;
     private LocalDateTime datetime;
-    private int restoId;
-    private int menuId;
+    private Integer restoId;
+    private Integer menuId;
 }

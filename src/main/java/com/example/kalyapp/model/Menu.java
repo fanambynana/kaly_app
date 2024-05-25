@@ -10,6 +10,6 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 public class Menu {
-    private int id;
+    private Integer id;
     private String name;
 }

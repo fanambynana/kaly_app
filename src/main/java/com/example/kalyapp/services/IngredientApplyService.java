@@ -18,7 +18,7 @@ public class IngredientApplyService {
     public List<IngredientApply> findAll() {
         return ingredientApplyAutoCrudOperation.findAll();
     }
-    public IngredientApply findById(int id) {
+    public IngredientApply findById(Integer id) {
         return ingredientApplyAutoCrudOperation.findById(id);
     }
     public IngredientApply save(IngredientApply toSave) {
@@ -27,7 +27,7 @@ public class IngredientApplyService {
     public IngredientApply update(IngredientApply toUpdate) {
         return ingredientApplyAutoCrudOperation.save(toUpdate);
     }
-    public Boolean deleteById(int id) {
+    public Boolean deleteById(Integer id) {
         return ingredientApplyAutoCrudOperation.deleteById(id);
     }
 }

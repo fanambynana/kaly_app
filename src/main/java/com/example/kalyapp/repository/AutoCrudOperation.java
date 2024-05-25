@@ -49,7 +49,7 @@ public class AutoCrudOperation<T> implements CrudOperation<T> {
         try {
             for (Field field : fields) {
                 field.setAccessible(true);
-                if (field.get(toSave) == null) {
+                if (field.get(toSave) == null ) {
                     continue;
                 }
                 if (!columns.isEmpty()) {
@@ -68,7 +68,6 @@ public class AutoCrudOperation<T> implements CrudOperation<T> {
                     "INSERT INTO %s (" + columns + ") VALUES (" + values + ")",
                     classNameInSnakeCase
             );
-            System.out.println(insertQuery);
             preparedStatement = connection.prepareStatement(insertQuery);
             int parameterIndex = 1;
             for (Field field : fieldList) {
@@ -137,7 +136,7 @@ public class AutoCrudOperation<T> implements CrudOperation<T> {
         try {
             for (Field field : fields) {
                 field.setAccessible(true);
-                if (field.getName().toLowerCase().equals("id" + className)) {
+                if (field.getName().equalsIgnoreCase("id")) {
                     continue;
                 }
                 if (field.get(toUpdate) != null) {
@@ -154,10 +153,9 @@ public class AutoCrudOperation<T> implements CrudOperation<T> {
                 }
             }
             String query = String.format(
-                    "UPDATE %s SET %s WHERE id_%s = %s",
+                    "UPDATE %s SET %s WHERE id = %s",
                     classNameInSnakeCase,
                     dataUpdate,
-                    classNameInSnakeCase,
                     getModelId(toUpdate)
             );
             preparedStatement = connection.prepareStatement(query);
@@ -343,26 +341,25 @@ public class AutoCrudOperation<T> implements CrudOperation<T> {
         }
     }
 
-    private Integer getModelId(Object objectModel) throws Exception {
+    private Integer getModelId(Object objectModel) {
         Integer id = null;
         try {
             Class<?> clazz = getModel().getClass();
-            String className = clazz.getSimpleName();
             Field[] fields = clazz.getDeclaredFields();
 
             for (Field field : fields) {
                 field.setAccessible(true);
-                if (field.getName().equals("id" + className)) {
+                if (field.getName().equalsIgnoreCase("id")) {
                     Object idObj = field.get(objectModel);
                     if (idObj == null) {
                         throw new RuntimeException("Id is null");
                     } else {
-                        id = (int) idObj;
+                        id = (Integer) idObj;
                     }
                 }
             }
         } catch (Exception exception) {
-            System.out.println(formatError(exception, "getting model Id", objectModel));
+            System.err.println(formatError(exception, "getting model Id", objectModel));
         }
         return id;
     }

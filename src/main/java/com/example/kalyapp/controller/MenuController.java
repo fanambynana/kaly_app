@@ -24,7 +24,7 @@ public class MenuController {
     }
     @PutMapping("")
     public ResponseEntity<MenuDtoResponse> saveOrUpdate(@RequestBody Menu menu) {
-        if (menu.getId() == 0) {
+        if (menu.getId() == null) {
             return ResponseEntity.of(
                     Optional.of(menuService.save(menu))
             );
@@ -36,7 +36,7 @@ public class MenuController {
 
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity<Boolean> deleteById(@PathVariable int id) {
+    public ResponseEntity<Boolean> deleteById(@PathVariable Integer id) {
         return ResponseEntity.of(
                 Optional.of(menuService.deleteById(id))
         );

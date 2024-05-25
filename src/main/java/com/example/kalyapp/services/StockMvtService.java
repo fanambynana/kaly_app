@@ -24,7 +24,7 @@ public class StockMvtService implements RequestToResponse<StockMvt, StockMvtDtoR
    public List<StockMvtDtoResponse> findAll() {
        return stockMvtAutoCrudOperation.findAll().stream().map(this::requestToResponse).toList();
    }
-   public StockMvtDtoResponse findById(int id) {
+   public StockMvtDtoResponse findById(Integer id) {
        return requestToResponse(stockMvtAutoCrudOperation.findById(id));
    }
    public StockMvtDtoResponse save(StockMvtDtoRequest toSave) {
@@ -33,7 +33,7 @@ public class StockMvtService implements RequestToResponse<StockMvt, StockMvtDtoR
     public StockMvtDtoResponse update(StockMvtDtoRequest toUpdate) {
         return requestToResponse(stockMvtAutoCrudOperation.save(toUpdate));
     }
-    public Boolean deleteById(int id) {
+    public Boolean deleteById(Integer id) {
        return stockMvtAutoCrudOperation.deleteById(id);
     }
 

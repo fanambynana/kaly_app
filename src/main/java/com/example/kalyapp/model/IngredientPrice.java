@@ -12,9 +12,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Data
 public class IngredientPrice extends Price {
-    private  int ingredientId;
+    private  Integer ingredientId;
 
-    public IngredientPrice(int id, double amount, LocalDateTime changeDatetime, int ingredientId) {
+    public IngredientPrice(Integer id, Double amount, LocalDateTime changeDatetime, Integer ingredientId) {
         super(id, amount, changeDatetime);
         this.ingredientId = ingredientId;
     }

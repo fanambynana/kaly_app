@@ -11,7 +11,7 @@ import lombok.*;
 public class IngredientDtoResponse extends Ingredient {
     private Price price;
 
-    public IngredientDtoResponse(int id, String name, String unity, Price price) {
+    public IngredientDtoResponse(Integer id, String name, String unity, Price price) {
         super(id, name, unity);
         this.price = price;
     }

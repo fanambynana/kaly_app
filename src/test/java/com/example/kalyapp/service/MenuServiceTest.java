@@ -31,8 +31,8 @@ public class MenuServiceTest {
     static Ingredient ingredient = new Ingredient(1, "pain", "piece");
     static Ingredient ingredient2 = new Ingredient(2, "huile", "litre");
 
-    static Compose compose = new Compose(1, 10, menuId, ingredient.getId());
-    static Compose compose2 = new Compose(2, 1, menuId, ingredient2.getId());
+    static Compose compose = new Compose(1, 10.0, menuId, ingredient.getId());
+    static Compose compose2 = new Compose(2, 1.0, menuId, ingredient2.getId());
 
     static Menu menuDtoRequest = new Menu(
             1,
