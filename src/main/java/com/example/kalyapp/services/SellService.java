@@ -6,6 +6,7 @@ import com.example.kalyapp.repository.AutoCrudOperation;
 import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
+import java.util.List;
 
 @Service
 public class SellService implements RequestToResponse<Sell, SellDtoResponse> {
@@ -13,14 +14,27 @@ public class SellService implements RequestToResponse<Sell, SellDtoResponse> {
     RestoService restoService;
     MenuService menuService;
 
-
     public SellService(Connection connection, RestoService restoService, MenuService menuService) {
         this.sellAutoCrudOperation = new AutoCrudOperation<>(new Sell(), connection);
         this.restoService = restoService;
         this.menuService = menuService;
     }
 
-
+    public List<SellDtoResponse> findAll() {
+        return sellAutoCrudOperation.findAll().stream().map(this::requestToResponse).toList();
+    }
+    public SellDtoResponse findById(Integer id) {
+        return requestToResponse(sellAutoCrudOperation.findById(id));
+    }
+    public SellDtoResponse save(Sell toSave) {
+        return requestToResponse(sellAutoCrudOperation.save(toSave));
+    }
+    public SellDtoResponse update(Sell toUpdate) {
+        return requestToResponse(sellAutoCrudOperation.update(toUpdate));
+    }
+    public Boolean deleteById(Integer id) {
+        return sellAutoCrudOperation.deleteById(id);
+    }
 
     @Override
     public SellDtoResponse requestToResponse(Sell sellDtoRequest) {
