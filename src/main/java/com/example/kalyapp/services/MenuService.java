@@ -30,19 +30,16 @@ public class MenuService implements RequestToResponse<Menu, MenuDtoResponse> {
         return requestToResponse(menuAutoCrudOperation.findById(id));
     }
     public MenuDtoResponse save(Menu toSave) {
-        if (menuAutoCrudOperation.save(toSave) == null) {
-            throw new RuntimeException("Menu save failed");
-        }
-        return requestToResponse(toSave);
+        return requestToResponse(menuAutoCrudOperation.save(toSave));
     }
     public MenuDtoResponse update(Menu toUpdate) {
-        if (menuAutoCrudOperation.update(toUpdate) == null) {
-            throw new RuntimeException("Menu update failed");
-        }
-        return requestToResponse(toUpdate);
+        return requestToResponse(menuAutoCrudOperation.update(toUpdate));
     }
     public Boolean deleteById(Integer id) {
         return menuAutoCrudOperation.deleteById(id);
+    }
+    public List<MenuDtoResponse> findCustom(List<KeyAndValue> keyAndValueList) {
+        return menuAutoCrudOperation.findCustom(keyAndValueList).stream().map(this::requestToResponse).toList();
     }
 
     @Override

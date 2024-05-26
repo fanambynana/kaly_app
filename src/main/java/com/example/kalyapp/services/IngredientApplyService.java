@@ -25,7 +25,7 @@ public class IngredientApplyService {
         return ingredientApplyAutoCrudOperation.save(toSave);
     }
     public IngredientApply update(IngredientApply toUpdate) {
-        return ingredientApplyAutoCrudOperation.save(toUpdate);
+        return ingredientApplyAutoCrudOperation.update(toUpdate);
     }
     public Boolean deleteById(Integer id) {
         return ingredientApplyAutoCrudOperation.deleteById(id);

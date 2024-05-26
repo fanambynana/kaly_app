@@ -25,7 +25,7 @@ public class MenuApplyService {
         return menuApplyAutoCrudOperation.save(toSave);
     }
     public MenuApply update(MenuApply toUpdate) {
-        return menuApplyAutoCrudOperation.save(toUpdate);
+        return menuApplyAutoCrudOperation.update(toUpdate);
     }
     public Boolean deleteById(Integer id) {
         return menuApplyAutoCrudOperation.deleteById(id);

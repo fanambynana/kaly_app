@@ -29,7 +29,7 @@ public class ComposeService implements RequestToResponse<Compose, ComposeDtoResp
         return requestToResponse(composeAutoCrudOperation.save(toSave));
     }
     public ComposeDtoResponse update(Compose toUpdate) {
-        return requestToResponse(composeAutoCrudOperation.save(toUpdate));
+        return requestToResponse(composeAutoCrudOperation.update(toUpdate));
     }
     public Boolean deleteById(Integer id) {
         return composeAutoCrudOperation.deleteById(id);
@@ -45,11 +45,11 @@ public class ComposeService implements RequestToResponse<Compose, ComposeDtoResp
         }
         ComposeDtoResponse composeDtoResponse = new ComposeDtoResponse();
 
-        System.out.println(compose.getIngredientId());
-
         composeDtoResponse.setId(compose.getId());
         composeDtoResponse.setNecessaryQty(compose.getNecessaryQty());
         composeDtoResponse.setIngredient(ingredientService.findById(compose.getIngredientId()));
+        composeDtoResponse.setMenuId(compose.getMenuId());
+        composeDtoResponse.setIngredientId(compose.getIngredientId());
 
         return composeDtoResponse;
     }
