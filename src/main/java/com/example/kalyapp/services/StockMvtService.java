@@ -39,6 +39,10 @@ public class StockMvtService implements RequestToResponse<StockMvt, StockMvtDtoR
 
     @Override
     public StockMvtDtoResponse requestToResponse(StockMvt stockMvtDtoRequest) {
+        if (stockMvtDtoRequest == null) {
+            return null;
+        }
+
         StockMvtDtoResponse stockMvtDtoResponse = new StockMvtDtoResponse();
 
         stockMvtDtoResponse.setId(stockMvtDtoRequest.getId());

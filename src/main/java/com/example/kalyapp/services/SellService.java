@@ -38,11 +38,17 @@ public class SellService implements RequestToResponse<Sell, SellDtoResponse> {
 
     @Override
     public SellDtoResponse requestToResponse(Sell sellDtoRequest) {
+        if (sellDtoRequest == null) {
+            return null;
+        }
+
         SellDtoResponse sellDtoResponse = new SellDtoResponse();
 
         sellDtoResponse.setId(sellDtoRequest.getId());
         sellDtoResponse.setQty(sellDtoRequest.getQty());
         sellDtoResponse.setDatetime(sellDtoRequest.getDatetime());
+        sellDtoResponse.setRestoId(sellDtoRequest.getRestoId());
+        sellDtoResponse.setMenuId(sellDtoRequest.getMenuId());
         sellDtoResponse.setResto(restoService.findById(sellDtoRequest.getRestoId()));
         sellDtoResponse.setMenu(menuService.findById(sellDtoRequest.getMenuId()));
 

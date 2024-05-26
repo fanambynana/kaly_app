@@ -16,7 +16,7 @@ public class StockMvtDtoResponse extends StockMvt {
     private IngredientDtoResponse ingredient;
 
     public StockMvtDtoResponse(Integer id, MVT_TYPE mvtType, Double mvtQty, Double updatedQty, LocalDateTime mvtDatetime, Resto resto, IngredientDtoResponse ingredient) {
-        super(id, mvtType, mvtQty, updatedQty, mvtDatetime, null, null);
+        super(id, mvtType, mvtQty, updatedQty, mvtDatetime, resto.getId(), ingredient.getId());
         this.resto = resto;
         this.ingredient = ingredient;
     }

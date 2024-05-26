@@ -32,7 +32,7 @@ public class IngredientService implements RequestToResponse<Ingredient, Ingredie
         return requestToResponse(ingredientAutoCrudOperation.update(toUpdate));
     }
     public Boolean deleteById(Integer id) {
-        return ingredientPriceService.deleteById(id);
+        return ingredientAutoCrudOperation.deleteById(id);
     }
 
     @Override
