@@ -101,8 +101,7 @@ public class AutoCrudOperation<T> implements CrudOperation<T> {
 
         try {
             String query = String.format(
-                    "DELETE FROM %s WHERE id_%s = %s",
-                    classNameInSnakeCase,
+                    "DELETE FROM %s WHERE id = %s",
                     classNameInSnakeCase,
                     id
             );
