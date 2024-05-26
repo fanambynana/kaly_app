@@ -8,7 +8,6 @@ import java.sql.Connection;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class IngredientPriceService {
@@ -25,7 +24,7 @@ public class IngredientPriceService {
         return ingredientPriceAutoCrudOperation.findById(id);
     }
     public IngredientPrice save(IngredientPrice toSave) {
-        return ingredientPriceAutoCrudOperation.save(toSave);
+        return ingredientPriceAutoCrudOperation.update(toSave);
     }
     public IngredientPrice update(IngredientPrice toUpdate) {
         return ingredientPriceAutoCrudOperation.update(toUpdate);
@@ -38,8 +37,8 @@ public class IngredientPriceService {
         if (ingredientPriceAutoCrudOperation.findAll().isEmpty()) {
             return new IngredientPrice(
                     null,
-                    null,
-                    LocalDateTime.now(),
+                    0.0,
+                    LocalDateTime.parse("2024-01-26T00:00:00"),
                     null
             );
         } else {

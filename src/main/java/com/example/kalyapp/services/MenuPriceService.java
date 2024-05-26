@@ -44,8 +44,8 @@ public class MenuPriceService {
         if (menuPrices.isEmpty()) {
             return new MenuPrice(
                     null,
-                    null,
-                    LocalDateTime.now(),
+                    0.0,
+                    LocalDateTime.parse("2024-01-26T00:00:00"),
                     null
             );
         } else  {
