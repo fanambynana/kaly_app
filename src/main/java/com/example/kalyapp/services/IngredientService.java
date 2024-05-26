@@ -4,6 +4,7 @@ import com.example.kalyapp.dto.response.IngredientDtoResponse;
 import com.example.kalyapp.model.Ingredient;
 import com.example.kalyapp.model.IngredientPrice;
 import com.example.kalyapp.repository.AutoCrudOperation;
+import com.example.kalyapp.repository.KeyAndValue;
 import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
@@ -33,6 +34,9 @@ public class IngredientService implements RequestToResponse<Ingredient, Ingredie
     }
     public Boolean deleteById(Integer id) {
         return ingredientAutoCrudOperation.deleteById(id);
+    }
+    public List<IngredientDtoResponse> findCustom(List<KeyAndValue> keyAndValueList) {
+        return ingredientAutoCrudOperation.findCustom(keyAndValueList).stream().map(this::requestToResponse).toList();
     }
 
     @Override

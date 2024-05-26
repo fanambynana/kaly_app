@@ -3,6 +3,7 @@ package com.example.kalyapp.services;
 import com.example.kalyapp.dto.response.SellDtoResponse;
 import com.example.kalyapp.model.Sell;
 import com.example.kalyapp.repository.AutoCrudOperation;
+import com.example.kalyapp.repository.KeyAndValue;
 import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
@@ -34,6 +35,9 @@ public class SellService implements RequestToResponse<Sell, SellDtoResponse> {
     }
     public Boolean deleteById(Integer id) {
         return sellAutoCrudOperation.deleteById(id);
+    }
+    public List<SellDtoResponse> findCustom(List<KeyAndValue> keyAndValueList) {
+        return sellAutoCrudOperation.findCustom(keyAndValueList).stream().map(this::requestToResponse).toList();
     }
 
     @Override

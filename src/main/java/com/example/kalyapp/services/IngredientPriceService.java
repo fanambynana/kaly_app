@@ -2,6 +2,7 @@ package com.example.kalyapp.services;
 
 import com.example.kalyapp.model.IngredientPrice;
 import com.example.kalyapp.repository.AutoCrudOperation;
+import com.example.kalyapp.repository.KeyAndValue;
 import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
@@ -31,6 +32,9 @@ public class IngredientPriceService {
     }
     public Boolean deleteById(int id) {
         return ingredientPriceAutoCrudOperation.deleteById(id);
+    }
+    public List<IngredientPrice> findCustom(List<KeyAndValue> keyAndValueList) {
+        return ingredientPriceAutoCrudOperation.findCustom(keyAndValueList);
     }
 
     public IngredientPrice currentIngredientPrice() {

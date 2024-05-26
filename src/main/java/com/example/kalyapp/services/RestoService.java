@@ -2,6 +2,7 @@ package com.example.kalyapp.services;
 
 import com.example.kalyapp.model.Resto;
 import com.example.kalyapp.repository.AutoCrudOperation;
+import com.example.kalyapp.repository.KeyAndValue;
 import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
@@ -29,5 +30,8 @@ public class RestoService {
     }
     public Boolean deleteById(Integer id) {
         return restoAutoCrudOperation.deleteById(id);
+    }
+    public List<Resto> findCustom(List<KeyAndValue> keyAndValueList) {
+        return restoAutoCrudOperation.findCustom(keyAndValueList);
     }
 }

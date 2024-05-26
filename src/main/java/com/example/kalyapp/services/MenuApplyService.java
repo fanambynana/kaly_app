@@ -2,6 +2,7 @@ package com.example.kalyapp.services;
 
 import com.example.kalyapp.model.MenuApply;
 import com.example.kalyapp.repository.AutoCrudOperation;
+import com.example.kalyapp.repository.KeyAndValue;
 import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
@@ -29,5 +30,8 @@ public class MenuApplyService {
     }
     public Boolean deleteById(Integer id) {
         return menuApplyAutoCrudOperation.deleteById(id);
+    }
+    public List<MenuApply> findCustom(List<KeyAndValue> keyAndValueList) {
+        return menuApplyAutoCrudOperation.findCustom(keyAndValueList);
     }
 }

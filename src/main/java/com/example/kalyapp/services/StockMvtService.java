@@ -4,6 +4,7 @@ import com.example.kalyapp.dto.response.StockMvtDtoResponse;
 import com.example.kalyapp.dto.resquest.StockMvtDtoRequest;
 import com.example.kalyapp.model.StockMvt;
 import com.example.kalyapp.repository.AutoCrudOperation;
+import com.example.kalyapp.repository.KeyAndValue;
 import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
@@ -35,6 +36,9 @@ public class StockMvtService implements RequestToResponse<StockMvt, StockMvtDtoR
     }
     public Boolean deleteById(Integer id) {
        return stockMvtAutoCrudOperation.deleteById(id);
+    }
+    public List<StockMvtDtoResponse> findCustom(List<KeyAndValue> keyAndValueList) {
+        return stockMvtAutoCrudOperation.findCustom(keyAndValueList).stream().map(this::requestToResponse).toList();
     }
 
     @Override
