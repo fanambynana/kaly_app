@@ -1,7 +1,6 @@
 package com.example.kalyapp.services;
 
 import com.example.kalyapp.dto.response.StockMvtDtoResponse;
-import com.example.kalyapp.dto.resquest.StockMvtDtoRequest;
 import com.example.kalyapp.model.StockMvt;
 import com.example.kalyapp.repository.AutoCrudOperation;
 import com.example.kalyapp.repository.KeyAndValue;
@@ -28,10 +27,10 @@ public class StockMvtService implements RequestToResponse<StockMvt, StockMvtDtoR
    public StockMvtDtoResponse findById(Integer id) {
        return requestToResponse(stockMvtAutoCrudOperation.findById(id));
    }
-   public StockMvtDtoResponse save(StockMvtDtoRequest toSave) {
+   public StockMvtDtoResponse save(StockMvt toSave) {
        return requestToResponse(stockMvtAutoCrudOperation.save(toSave));
    }
-    public StockMvtDtoResponse update(StockMvtDtoRequest toUpdate) {
+    public StockMvtDtoResponse update(StockMvt toUpdate) {
         return requestToResponse(stockMvtAutoCrudOperation.save(toUpdate));
     }
     public Boolean deleteById(Integer id) {
@@ -52,7 +51,6 @@ public class StockMvtService implements RequestToResponse<StockMvt, StockMvtDtoR
         stockMvtDtoResponse.setId(stockMvtDtoRequest.getId());
         stockMvtDtoResponse.setMvtDatetime(stockMvtDtoRequest.getMvtDatetime());
         stockMvtDtoResponse.setMvtQty(stockMvtDtoRequest.getMvtQty());
-        stockMvtDtoResponse.setUpdatedQty(stockMvtDtoRequest.getUpdatedQty());
         stockMvtDtoResponse.setMvtType(stockMvtDtoRequest.getMvtType());
         stockMvtDtoResponse.setResto(restoService.findById(stockMvtDtoRequest.getRestoId()));
         stockMvtDtoResponse.setIngredient(ingredientService.findById(stockMvtDtoRequest.getIngredientId()));

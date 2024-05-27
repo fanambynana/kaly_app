@@ -1,7 +1,6 @@
 package com.example.kalyapp.controller;
 
 import com.example.kalyapp.dto.response.StockMvtDtoResponse;
-import com.example.kalyapp.dto.resquest.StockMvtDtoRequest;
 import com.example.kalyapp.model.StockMvt;
 import com.example.kalyapp.services.StockMvtService;
 import lombok.AllArgsConstructor;
@@ -18,14 +17,14 @@ public class StockMvtController {
     StockMvtService stockMvtService;
 
     @PutMapping("")
-    public ResponseEntity<StockMvtDtoResponse> saveOrUpdate(@RequestBody StockMvtDtoRequest stockMvtDtoRequest) {
-        if (stockMvtDtoRequest.getId() == null) {
+    public ResponseEntity<StockMvt> saveOrUpdate(@RequestBody StockMvt stockMvt) {
+        if (stockMvt.getId() == null) {
             return ResponseEntity.of(
-                    Optional.of(stockMvtService.save(stockMvtDtoRequest))
+                    Optional.of(stockMvtService.save(stockMvt))
             );
         } else {
             return ResponseEntity.of(
-                    Optional.of(stockMvtService.update(stockMvtDtoRequest))
+                    Optional.of(stockMvtService.update(stockMvt))
             );
         }
     }
