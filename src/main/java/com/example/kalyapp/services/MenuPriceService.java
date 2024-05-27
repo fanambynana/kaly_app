@@ -22,7 +22,7 @@ public class MenuPriceService {
     public List<MenuPrice> findAll() {
         return menuPriceAutoCrudOperation.findAll();
     }
-    public MenuPrice findById(Integer id) {
+    public MenuPrice findById(int id) {
         return menuPriceAutoCrudOperation.findById(id);
     }
     public MenuPrice save(MenuPrice toSave) {
@@ -31,7 +31,7 @@ public class MenuPriceService {
     public MenuPrice update(MenuPrice toUpdate) {
         return menuPriceAutoCrudOperation.update(toUpdate);
     }
-    public Boolean deleteById(Integer id) {
+    public Boolean deleteById(int id) {
         return menuPriceAutoCrudOperation.deleteById(id);
     }
     public List<MenuPrice> findCustom(List<KeyAndValue> keyAndValueList) {

@@ -19,7 +19,7 @@ public class RestoService {
     public List<Resto> findAll() {
         return restoAutoCrudOperation.findAll();
     }
-    public Resto findById(Integer id) {
+    public Resto findById(int id) {
         return restoAutoCrudOperation.findById(id);
     }
     public Resto save(Resto toSave) {
@@ -28,7 +28,7 @@ public class RestoService {
     public Resto update(Resto toUpdate) {
         return restoAutoCrudOperation.update(toUpdate);
     }
-    public Boolean deleteById(Integer id) {
+    public Boolean deleteById(int id) {
         return restoAutoCrudOperation.deleteById(id);
     }
     public List<Resto> findCustom(List<KeyAndValue> keyAndValueList) {

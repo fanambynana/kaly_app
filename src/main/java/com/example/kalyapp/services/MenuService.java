@@ -26,7 +26,7 @@ public class MenuService implements RequestToResponse<Menu, MenuDtoResponse> {
     public List<MenuDtoResponse> findAll() {
         return menuAutoCrudOperation.findAll().stream().map(this::requestToResponse).toList();
     }
-    public MenuDtoResponse findById(Integer id) {
+    public MenuDtoResponse findById(int id) {
         return requestToResponse(menuAutoCrudOperation.findById(id));
     }
     public MenuDtoResponse save(Menu toSave) {
@@ -35,7 +35,7 @@ public class MenuService implements RequestToResponse<Menu, MenuDtoResponse> {
     public MenuDtoResponse update(Menu toUpdate) {
         return requestToResponse(menuAutoCrudOperation.update(toUpdate));
     }
-    public Boolean deleteById(Integer id) {
+    public Boolean deleteById(int id) {
         return menuAutoCrudOperation.deleteById(id);
     }
     public List<MenuDtoResponse> findCustom(List<KeyAndValue> keyAndValueList) {

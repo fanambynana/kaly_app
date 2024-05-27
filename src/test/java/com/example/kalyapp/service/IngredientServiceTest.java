@@ -2,7 +2,6 @@ package com.example.kalyapp.service;
 
 import com.example.kalyapp.model.Ingredient;
 import com.example.kalyapp.services.IngredientService;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

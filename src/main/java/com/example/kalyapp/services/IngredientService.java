@@ -23,7 +23,7 @@ public class IngredientService implements RequestToResponse<Ingredient, Ingredie
     public List<IngredientDtoResponse> findAll() {
         return ingredientAutoCrudOperation.findAll().stream().map(this::requestToResponse).toList();
     }
-    public IngredientDtoResponse findById(Integer id) {
+    public IngredientDtoResponse findById(int id) {
         return requestToResponse(ingredientAutoCrudOperation.findById(id));
     }
     public IngredientDtoResponse save(Ingredient toSave) {
@@ -32,7 +32,7 @@ public class IngredientService implements RequestToResponse<Ingredient, Ingredie
     public IngredientDtoResponse update(Ingredient toUpdate) {
         return requestToResponse(ingredientAutoCrudOperation.update(toUpdate));
     }
-    public Boolean deleteById(Integer id) {
+    public Boolean deleteById(int id) {
         return ingredientAutoCrudOperation.deleteById(id);
     }
     public List<IngredientDtoResponse> findCustom(List<KeyAndValue> keyAndValueList) {

@@ -24,7 +24,7 @@ public class SellService implements RequestToResponse<Sell, SellDtoResponse> {
     public List<SellDtoResponse> findAll() {
         return sellAutoCrudOperation.findAll().stream().map(this::requestToResponse).toList();
     }
-    public SellDtoResponse findById(Integer id) {
+    public SellDtoResponse findById(int id) {
         return requestToResponse(sellAutoCrudOperation.findById(id));
     }
     public SellDtoResponse save(Sell toSave) {
@@ -33,7 +33,7 @@ public class SellService implements RequestToResponse<Sell, SellDtoResponse> {
     public SellDtoResponse update(Sell toUpdate) {
         return requestToResponse(sellAutoCrudOperation.update(toUpdate));
     }
-    public Boolean deleteById(Integer id) {
+    public Boolean deleteById(int id) {
         return sellAutoCrudOperation.deleteById(id);
     }
     public List<SellDtoResponse> findCustom(List<KeyAndValue> keyAndValueList) {

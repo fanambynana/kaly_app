@@ -22,7 +22,7 @@ public class ComposeService implements RequestToResponse<Compose, ComposeDtoResp
     public List<ComposeDtoResponse> findAll() {
         return composeAutoCrudOperation.findAll().stream().map(this::requestToResponse).toList();
     }
-    public ComposeDtoResponse findById(Integer id) {
+    public ComposeDtoResponse findById(int id) {
         return requestToResponse(composeAutoCrudOperation.findById(id));
     }
     public ComposeDtoResponse save(Compose toSave) {
@@ -31,7 +31,7 @@ public class ComposeService implements RequestToResponse<Compose, ComposeDtoResp
     public ComposeDtoResponse update(Compose toUpdate) {
         return requestToResponse(composeAutoCrudOperation.update(toUpdate));
     }
-    public Boolean deleteById(Integer id) {
+    public Boolean deleteById(int id) {
         return composeAutoCrudOperation.deleteById(id);
     }
     public List<ComposeDtoResponse> findCustom(List<KeyAndValue> keyAndValueList) {
