@@ -45,7 +45,6 @@ CREATE TABLE stock_mvt(
     id SERIAL PRIMARY KEY,
     mvt_type MVT_TYPE NOT NULL,
     mvt_qty DOUBLE PRECISION NOT NULL,
-    updated_qty DOUBLE PRECISION NOT NULL,
     mvt_datetime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     resto_id INT NOT NULL REFERENCES restaurant(id),
     ingredient_id INT NOT NULL REFERENCES ingredient(id)
@@ -55,4 +54,16 @@ CREATE TABLE compose(
                         ingredient_id INT NOT NULL REFERENCES ingredient(id),
                         menu_id INT NOT NULL REFERENCES menu(id),
                         necessary_qty DOUBLE PRECISION NOT NULL
+);
+CREATE TABLE ingredient-stock(
+    id SERIAL PRIMARY KEY,
+    qty DOUBLE PRECISION NOT NULL,
+    update_datetime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ingredient_id INT NOT NULL REFERENCES ingredient(id)
+);
+CREATE TABLE stock(
+                                id SERIAL PRIMARY KEY,
+                                qty DOUBLE NOT NULL PRECISION NOT NULL,
+                                update_datetime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                ingredient_id INT NOT NULL REFERENCES ingredient(id)
 );
