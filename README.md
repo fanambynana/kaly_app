@@ -10,5 +10,6 @@ export DB_BASE_URL="jdbc:postgresql//localhost:5432"
 
 - *Database:*
 ```shell
-sh src/main/resources/db/migration/create-db.sh
+#Create database kaly_db
+#Run create table
 ```
